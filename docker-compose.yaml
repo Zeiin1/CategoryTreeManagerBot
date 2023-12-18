@@ -5,22 +5,20 @@ services:
     container_name: postgresql-container
     image: postgres
     environment:
-      - POSTGRES-DB = MYDB2
-      - POSTGRES-PASSWORD = admin2
-      - POSTGRES-USER = admin2
-      - POSTGRES_HOST_AUTH_METHOD = trust
-    volumes:
-      - C:\postgres_datapart:/var/lib/postgresql/data
-    restart: always
+      - POSTGRES_DB=greenlight
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0000
+
+
   backend:
     build: .
     container_name: category_tree_manager_bot
     ports:
       - 8089:8089
     environment:
-      db-url: jdbc:postgresql://db:5432/MYDB2
-      db-username: admin2
-      db-password: admin2
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/greenlight
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=0000
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
       - db
-    restart: always
