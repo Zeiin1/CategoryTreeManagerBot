@@ -24,13 +24,14 @@ public class SaveTreeImpl implements BotCommand {
         String[] parts = messageText.split(" ");
         if(parts.length == 2)
         {
-
+            //если у команды только одно название то создаем root tree
             CategoryTreeRequest categoryTreeRequest = new CategoryTreeRequest(parts[1]);
             result = categoryTreeService.save(categoryTreeRequest);
 
         }
         else if(parts.length ==3){
-            String parent = parts[1];
+            //если у команды два название создаем child element
+             String parent = parts[1];
             String child = parts[2];
 
             CategoryTreeRequest categoryTreeRequest1 = new CategoryTreeRequest(parent,child);

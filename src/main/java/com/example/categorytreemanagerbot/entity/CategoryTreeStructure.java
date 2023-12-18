@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CategoryTreeStructure {
+    //тут мы рисуем само дерево
     private Map<Long, List<CategoryTree>> treeMap;
     String parentName;
     public CategoryTreeStructure(String parentName) {
@@ -36,7 +37,7 @@ public class CategoryTreeStructure {
         if (treeMap.containsKey(id)) {
 
             for (CategoryTree category : treeMap.get(id)) {
-                stringBuilder.append("  ".repeat(level)); // Adjust spacing according to level
+                stringBuilder.append("  ".repeat(level));
                 stringBuilder.append("|_ ").append(category.getName()).append("\n");
                 stringBuilder.append(drawTree(category.getId(), level + 2));
 

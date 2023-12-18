@@ -19,5 +19,6 @@ public class HelpImpl implements BotCommand {
         sendMessage.setChatId(String.valueOf(chatId));
         sendMessage.setText(result);
         return sendMessage;
+        //класс HelpImpl отвечает за команду /help
     }
 }

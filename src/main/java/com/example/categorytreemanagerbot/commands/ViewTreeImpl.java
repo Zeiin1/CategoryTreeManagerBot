@@ -19,7 +19,7 @@ public class ViewTreeImpl implements BotCommand {
     }
     @Override
     public SendMessage execute(Update update) {
-        CategoryTree rootTree = categoryTreeService.getRootParent();
+        CategoryTree rootTree = categoryTreeService.getRootParent(); //берем из бд root tree
         String result = "";
         SendMessage sendMessage = new SendMessage();
         long chatId = update.getMessage().getChatId();
@@ -29,7 +29,7 @@ public class ViewTreeImpl implements BotCommand {
         }
         else {
             CategoryTreeStructure categoryTreeStructure = new CategoryTreeStructure(rootTree.getName());
-            ArrayList<CategoryTree> categoryTreeList = categoryTreeService.getAllCategory();
+            ArrayList<CategoryTree> categoryTreeList = categoryTreeService.getAllCategory(); //берем все элементы
             if (categoryTreeList.size() == 0) {
                 result = "В данный момент дерево категорий пуст! Добавьте элементы \n" +
                         "используя команду /addElement";
@@ -38,6 +38,7 @@ public class ViewTreeImpl implements BotCommand {
                     categoryTreeStructure.addToTree(categoryTree);
                 }
                 result = categoryTreeStructure.printTree(rootTree.getId(), 1);
+                //здесь уже рисуем само дерево
             }
         }
 

@@ -18,6 +18,7 @@ public class CategoryTreeImpl implements CategoryTreeService  {
 
     @Override
     public String save(CategoryTreeRequest categoryTreeRequest) {
+        //создание элемента в бд
         String parent = categoryTreeRequest.getParentName();
         String child = categoryTreeRequest.getName();
 
@@ -25,6 +26,7 @@ public class CategoryTreeImpl implements CategoryTreeService  {
         {
             if(categoryTreeRepository.findAll().size()==0) //проверка сучествует ли главный корень
             {
+                //если нет создаем главный корень
                 CategoryTree categoryTree = new CategoryTree();
                 categoryTree.setName(parent);
                 categoryTreeRepository.save(categoryTree);
@@ -38,6 +40,7 @@ public class CategoryTreeImpl implements CategoryTreeService  {
             CategoryTree currNameIs = categoryTreeRepository.findByName(child);
             if(parentLeaf!=null && currNameIs==null)
             {
+                //создание элемента
                 CategoryTree newCategoryTree = new CategoryTree();
                 newCategoryTree.setName(child);
                 newCategoryTree.setParentId(parentLeaf.getId());
@@ -59,11 +62,14 @@ public class CategoryTreeImpl implements CategoryTreeService  {
 
     @Override
     public ArrayList getAllCategory() {
+        //берем все элементы с бд
         return (ArrayList) categoryTreeRepository.findAll();
     }
 
     @Override
-    public CategoryTree getRootParent() {
+    public CategoryTree getRootParent()
+    {
+        //здесь берем родительский элемент
         return categoryTreeRepository.getRootTree();
     }
 

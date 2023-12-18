@@ -17,4 +17,5 @@ public class CategoryTree {
     private Long id;
     private String name;
     private Long parentId;
+    //создаем класс и с помощью spring data jpa создаем такую же таблицу в postgreSQL
 }

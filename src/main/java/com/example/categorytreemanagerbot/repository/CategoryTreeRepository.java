@@ -9,6 +9,7 @@ import java.util.Collection;
 
 @Repository
 public interface CategoryTreeRepository extends JpaRepository<CategoryTree,Long> {
+
     CategoryTree findByName(String name);
     @Query("select tree from CategoryTree tree where tree.parentId is null")
     CategoryTree getRootTree();
