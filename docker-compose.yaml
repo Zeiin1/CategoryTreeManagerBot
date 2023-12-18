@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=0000
 
-
+#для запуска docker-compose напишите команду "docker compose -f .\docker-compose.yaml up" в терминал
   backend:
     build: .
     container_name: category_tree_manager_bot
@@ -22,3 +22,4 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     depends_on:
       - db
+
